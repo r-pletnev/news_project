@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} {{block.super}} | 404 {% endblock title %}
+
+{% block content %}
+  <div class="single">
+    <main id="main">
+      <article id="story">
+        <div class="not-found">
+          <h1>404</h1>
+          <p>Запрашиваемая вами страница не существует.</p>
+          <p>Проверьте адрес или перейдите<br><a href="{% url 'news:index_page' %}">на главную страницу</a>.</p>
+        </div>
+      </article>
+    </main>
+  </div>
+{% endblock content %}
+
+

@@ -1,0 +1,32 @@
+{% load static %}
+<section>
+	<div class='posts'>
+		{% for article in news %}
+			<article class="{% cycle 'post post-box' 'post post-box' 'post post-box-2x' %}">
+			  {% if article.cover_image %}
+				<a href="{% url 'news:news_detail' article.category.slug article.slug %}" class='image' {% if forloop.last %}
+                style="width:550px" {% endif %}>
+				  <img src={{article.cover_image.url}} alt title>
+				</a>
+			  {% else %}
+			    <a href="{% url 'news:news_detail' article.category.slug article.slug %}" class='image'>
+					<img src="{% static '/assets/img/no-image.png' %}" alt title >
+				</a>
+			  {% endif %}
+			  <div class='content'>
+				<h2>
+				  <a href="{% url 'news:news_detail' article.category.slug article.slug %}" class='image'>
+					{{article.title}}
+				  </a>
+				</h2>
+				{% autoescape off %}
+					<p>{{article.body|truncatewords:20}}</p>
+				{% endautoescape %}
+				<small>{{article.created_at}}</small>
+			  </div>
+			</article>
+		{% empty %}
+			<div>Пока тут пусто ...</div>
+		{% endfor %}
+	</div>
+</section>

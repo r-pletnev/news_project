@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} {{block.super}} | {{category.name}} {% endblock title %}
+
+{% block meta.description %} {{category.description}} {% endblock meta.description %}
+{% block meta.keywords %} {{category.keywords}} {% endblock meta.keywords %}
+
+{% block content %}
+  <div classname='nav'>
+	  <h1> // {{category.name|capfirst}}</h1>
+  </div>
+  {% include "newsLoop.html" %}
+  {% include "pagination_category.html" %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block meta.description %}Всё самое важное, что происходит в мире сейчас{% endblock meta.description %}
+{% block meta.keywords %}Главные новости  {% endblock meta.keywords %}
+
+{% block content %}
+	{% include "newsLoop.html" %}
+	{% include "pagination.html" %}
+{% endblock %}

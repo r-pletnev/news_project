@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{block.super}} | {{object.title}} {% endblock title %}
+
+{% block meta.description %} {{object.description}} {% endblock meta.description %}
+{% block meta.keywords %} {{object.keywords}} {% endblock meta.keywords %}
+
+{% block content %}
+  <div class='single'>
+    <main id='main'>
+      <article=id='story'>
+        <header class="story-header">
+          <h2>{{object.title}}</h2>
+          <small>{{object.created_at}}</small>
+        </header>
+        <div class="story">
+		  {% if article.cover_image %}
+			  <img src={{object.cover_image.url}}>
+		  {% else %}
+			  <img src="{% static '/assets/img/no-image.png' %}" alt title>
+		  {% endif %}
+		  {% autoescape off %}
+			  <p>{{object.body}}</p>
+		  {% endautoescape %}
+        </div>
+        <small class='source-box'>
+          Источник :
+          <a href="http://{{article.site}}">{{article.site}}</a>
+        </small>
+      </article>
+    </main>
+    <aside class="sidebar">
+      <h3>Связанные новости</h3>
+      {% for article in related_articles %}
+        <article class='post post-related'>
+          <a href="{% url 'news:news_detail' article.category.slug article.slug %}" class='image'>
+            {% if article.cover_image %}
+              <img src={{article.cover_image.url}} alt title>
+			{% else %}
+			  <img src="{% static '/assets/img/no-image.png' %}" alt title>
+            {% endif %}
+          </a>
+          <div class='content'>
+			  <a href="{% url 'news:news_detail' article.category.slug article.slug %}" class='image'>
+				<h2>{{article.title}}</h2>
+			  </a>
+          </div>
+        </article>
+        {% empty %}
+          <span>Пока тут пусто</span>
+      {% endfor %}
+    </aside>
+  </div>
+{% endblock %}

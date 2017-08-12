@@ -1,0 +1,19 @@
+{% if is_paginated %}
+  <div class="pagination">
+    <span class="page-links">
+      {% if page_obj.has_previous %}
+        <span class="page-back">
+          <a href="{% url 'news:category_paginator' category.slug page_obj.previous_page_number %}">назад</a>
+        </span>
+      {% endif %}
+      <span class="page-current">
+        Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+      </span>
+      {% if page_obj.has_next %}
+        <span class='page-next'>
+          <a href="{% url 'news:category_paginator' category.slug page_obj.next_page_number %}">вперед</a>
+        </span>
+      {% endif %}
+    </span>
+  </div>
+{% endif %}

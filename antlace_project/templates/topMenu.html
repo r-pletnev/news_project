@@ -1,0 +1,16 @@
+<nav id='menu'>
+  <div class="inner">
+    <div class='logo'>
+      <h2></h2>
+    </div>
+    <span class='menu-trigger'>&#9776; Категории</span>
+  </div>
+  <div class='menu'>
+    <ul>
+      <li><a href="{% url 'news:index_page' %}">Главная</a></li>
+      {% for category in category_list %}
+        <li><a href="{% url 'news:category_detail' category.slug %}">{{category.name}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
